@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Native;
 
-public class PatrFileInputStream extends InputStream {
+public class PatrNativeFileInputStream extends InputStream {
 	
 	/**
 	 * points to the native FILE pointer
@@ -26,7 +26,7 @@ public class PatrFileInputStream extends InputStream {
 	 */
 	private static native long create(String file) throws FileNotFoundException;
 	
-	public PatrFileInputStream(String file) throws FileNotFoundException {
+	public PatrNativeFileInputStream(String file) throws FileNotFoundException {
 		this.file = create(file);
 	}
 	

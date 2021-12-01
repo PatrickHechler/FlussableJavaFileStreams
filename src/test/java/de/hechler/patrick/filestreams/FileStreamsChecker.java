@@ -23,7 +23,7 @@ public class FileStreamsChecker extends Checker {
 	
 	@Check
 	public static void checkWriteAndRead() throws IOException {
-		try (OutputStream pfos = new PatrFileOutputStream("./testfiles/output/out0.txt")) {
+		try (OutputStream pfos = new PatrNativeFileOutputStream("./testfiles/output/out0.txt")) {
 			try (PrintStream out = new PrintStream(pfos, true)) {
 				out.println("hello file");
 				out.println("this is a simple test file");
@@ -50,7 +50,7 @@ public class FileStreamsChecker extends Checker {
 				out.print("[END]");
 			}
 		}
-		try (InputStream pfis = new PatrFileInputStream("testfiles/output/out0.txt")) {
+		try (InputStream pfis = new PatrNativeFileInputStream("testfiles/output/out0.txt")) {
 			try (Scanner in = new Scanner(pfis)) {
 				assertEquals("hello file", in.nextLine());
 				assertEquals("this is a simple test file", in.nextLine());

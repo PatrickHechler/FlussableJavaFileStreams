@@ -7,7 +7,7 @@ import java.lang.annotation.Native;
 import java.nio.channels.ClosedChannelException;
 import java.nio.file.Paths;
 
-public class PatrFileOutputStream extends OutputStream {
+public class PatrNativeFileOutputStream extends OutputStream {
 	
 	static {
 		System.load(Paths.get("./jni-libs/jnifilestreams.dll").toAbsolutePath().toString());
@@ -35,18 +35,18 @@ public class PatrFileOutputStream extends OutputStream {
 	private static native long create(String file, boolean append) throws FileNotFoundException;
 	
 	/**
-	 * creates a new {@link PatrFileOutputStream} to the given file the old file will be overwritten if it exists
+	 * creates a new {@link PatrNativeFileOutputStream} to the given file the old file will be overwritten if it exists
 	 * 
 	 * @param file
 	 *            the file to be created/overwritten
 	 * @throws FileNotFoundException
 	 *             if the file-stream could not be opened
 	 */
-	public PatrFileOutputStream(String file) throws FileNotFoundException {
+	public PatrNativeFileOutputStream(String file) throws FileNotFoundException {
 		this(file, false);
 	}
 	
-	public PatrFileOutputStream(String file, boolean append) throws FileNotFoundException {
+	public PatrNativeFileOutputStream(String file, boolean append) throws FileNotFoundException {
 		this.file = create(file, append);
 	}
 	
